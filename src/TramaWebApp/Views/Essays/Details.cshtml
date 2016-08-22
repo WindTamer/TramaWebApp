@@ -1,0 +1,64 @@
+@model TramaWebApp.Models.Essay
+@using System.Security.Claims
+
+<div class="container">
+    <div class="row">
+        <div class="box">           
+            <div class="col-lg-10">
+                <dl class="dl-horizontal">
+                    <dd>
+                        @Html.DisplayFor(model => model.student.StudentName)
+                    </dd>
+                    <dd>
+                        <i>
+                        @Html.DisplayFor(model => model.book.Title)
+                        </i>
+                    </dd>
+                    <dd>
+                        Professor R.Trama
+                    </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.PublishingDate)
+                    </dd>
+                    <dd>
+                        <hr />
+                    </dd>
+                    <dd class="text-center">
+                        @Html.DisplayFor(model => model.EssayTitle)
+                    </dd>
+                    <dd>
+                        <hr />
+                    </dd>
+                    <dd>
+                        <pre style="font:inherit; 
+                                    width:inherit; 
+                                    border:inherit; 
+                                    background-color:inherit; 
+                                    overflow:auto; 
+                                    word-break:inherit; 
+                                    word-spacing:normal; 
+                                    word-wrap:hyphenate; 
+                                    white-space:pre-wrap; 
+                                    text-align:justify;
+                                    line-height:25px">
+                        @Html.DisplayFor(model => model.ThesisStatement) 
+                        @Html.DisplayFor(model => model.Content)                      
+                        @Html.DisplayFor(model => model.Conclusion)
+                        </pre>
+                    </dd>     
+                </dl>
+            </div>
+            @if (User.IsSignedIn())
+            {
+                <div>
+                    <a asp-controller="Essays" asp-action="Edit" asp-route-id="@Model.EssayId">Edit</a> |
+                    <a asp-controller="Essays" asp-action="Delete" asp-route-id="@Model.EssayId"><span class="glyphicon glyphicon-trash"></span></a>
+                </div>
+
+            }
+            <p>
+                <a asp-action="Index">Back to List</a>
+            </p>
+            </div>
+        </div>
+    </div>

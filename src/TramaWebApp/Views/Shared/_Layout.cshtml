@@ -38,13 +38,25 @@
                 <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                        <li><a asp-controller="Home" asp-action="Contact">Contact</a></li>
-                        <li><a asp-controller="Essays" asp-action="Index">Essays</a></li>
-                    </ul>
-                    @await Html.PartialAsync("_LoginPartial")
+                        <li><a asp-controller="Home" asp-action="SendMail">Contact</a></li>
+                        <li>
+                            <div class="dropdown">
+                                <a asp-controller="Essays" asp-action="Index" class="dropdown-toggle" data-toggle="dropdown">Essays</a>
+
+                                <!-- dropdown menu -->
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a asp-controller="Books" asp-action="Index" role="menuitem">By Book</a></li>
+                                    <li><a asp-controller="Students" asp-action="Index" role="menuitem">By Author</a></li>
+                                    <li><a asp-controller="Essays" asp-action="Index" role="menuitem">By Title</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        </ul>
+                            @await Html.PartialAsync("_LoginPartial")
                 </div>
                 <!-- /.navbar-collapse -->
-            </div>
+                
+                </div>
             <!-- /.container -->
             </div>
         
@@ -58,7 +70,6 @@
                                 <p>&copy; 2016 - Richard Trama</p>
                                 <p>Website designed and developed by <a href="http://www.linkedin.com/in/windtamer">Alexander Sumeiko</a></p>
                             </div>
-                            
                         </div>
                     </div>
                 </footer>
@@ -74,6 +85,7 @@
                         asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
                         asp-fallback-test="window.jQuery">
                 </script>
+                <script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
                 <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/bootstrap.min.js"
                         asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
                         asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">

@@ -1,0 +1,73 @@
+@model TramaWebApp.Models.Book
+@using System.Security.Claims
+
+
+<div class="container">
+    <div class="row">
+        <div class="box">
+            <div class="col-lg-12">
+                
+                <hr/>
+                
+                    <dl style="text-align:center">
+                            <dd>
+                            @Html.DisplayFor(model => model.Author)
+                            </dd>
+                            <dd style="font-style:italic">
+                            @Html.DisplayFor(model => model.Title)
+                            </dd>
+                    </dl>
+                
+                <hr />
+                <table class="table">
+                    <tr>
+                        <th class="col-lg-2">
+                            Essay Author
+                        </th>
+                        <th class="col-lg-2">
+                            Essay Title
+                        </th>
+                        <th>
+                            Thesis Statement
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model.Essays)
+            {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StudentName)
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EssayTitle)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ThesisStatement)
+                            </td>
+                            <td>
+                                @if (User.IsSignedIn())
+                                {
+                                    <div>
+                                        <a asp-controller="Essays" asp-action="Edit" asp-route-id="@item.EssayId">Edit</a> |
+                                        <a asp-controller="Essays" asp-action="Details" asp-route-id="@item.EssayId">Details</a> |
+                                        <a asp-controller="Essays" asp-action="Delete" asp-route-id="@item.EssayId"><span class="glyphicon glyphicon-trash"></span></a>
+                                    </div>
+
+                                }
+                                else
+                                {
+                                    <a asp-controller="Essays" asp-action="Details" asp-route-id="@item.EssayId">Details</a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </table>
+                <p>
+                    <a asp-action="Index">Back to List</a>
+                </p>
+                </div>
+</div>
+        
+
+        </div>
+    </div>

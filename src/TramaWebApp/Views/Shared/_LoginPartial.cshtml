@@ -8,10 +8,10 @@
                 <form asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="navbar-right">
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a asp-controller="Manage" asp-action="Index" title="Manage">Hello @User.GetUserName()!</a>
+                            <a asp-controller="Manage" asp-action="Index" title="Manage" style="font-size:small;">Hello, @User.GetUserName()!</a>
                         </li>
                         <li>
-                            <button type="submit" class="btn btn-link navbar-btn navbar-link">Log off</button>
+                            <button type="submit" class="btn btn-link navbar-btn navbar-link"><span class="glyphicon glyphicon-log-out"></span></button>
                         </li>
                     </ul>
                 </form>
@@ -25,7 +25,7 @@ else
         <div class="row" style="float:right">
             <div class="col-md-2 text-right">
              
-                    <a asp-controller="Account" asp-action="Login">Admin</a>
+                    <a asp-controller="Account" asp-action="Login"><span class="glyphicon glyphicon-edit"></span></a>
                
                 </div>
             </div>

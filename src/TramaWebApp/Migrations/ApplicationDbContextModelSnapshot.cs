@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Infrastructure;
 using Microsoft.Data.Entity.Metadata;
@@ -16,7 +13,7 @@ namespace TramaWebApp.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.0-beta8")
+                .HasAnnotation("ProductVersion", "7.0.0-rc1-16348")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityRole", b =>
@@ -49,7 +46,8 @@ namespace TramaWebApp.Migrations
 
                     b.Property<string>("ClaimValue");
 
-                    b.Property<string>("RoleId");
+                    b.Property<string>("RoleId")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
@@ -65,7 +63,8 @@ namespace TramaWebApp.Migrations
 
                     b.Property<string>("ClaimValue");
 
-                    b.Property<string>("UserId");
+                    b.Property<string>("UserId")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
@@ -80,7 +79,8 @@ namespace TramaWebApp.Migrations
 
                     b.Property<string>("ProviderDisplayName");
 
-                    b.Property<string>("UserId");
+                    b.Property<string>("UserId")
+                        .IsRequired();
 
                     b.HasKey("LoginProvider", "ProviderKey");
 
@@ -146,6 +146,63 @@ namespace TramaWebApp.Migrations
                     b.HasAnnotation("Relational:TableName", "AspNetUsers");
                 });
 
+            modelBuilder.Entity("TramaWebApp.Models.Book", b =>
+                {
+                    b.Property<int>("BookId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Author")
+                        .IsRequired();
+
+                    b.Property<string>("Image");
+
+                    b.Property<string>("Title")
+                        .IsRequired();
+
+                    b.HasKey("BookId");
+                });
+
+            modelBuilder.Entity("TramaWebApp.Models.Essay", b =>
+                {
+                    b.Property<int>("EssayId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("BookTitle");
+
+                    b.Property<string>("Conclusion")
+                        .IsRequired();
+
+                    b.Property<string>("Content")
+                        .IsRequired();
+
+                    b.Property<string>("EssayTitle")
+                        .IsRequired();
+
+                    b.Property<DateTime>("PublishingDate");
+
+                    b.Property<string>("StudentName");
+
+                    b.Property<string>("ThesisStatement")
+                        .IsRequired();
+
+                    b.Property<int?>("bookBookId");
+
+                    b.Property<int?>("studentStudentId");
+
+                    b.HasKey("EssayId");
+                });
+
+            modelBuilder.Entity("TramaWebApp.Models.Student", b =>
+                {
+                    b.Property<int>("StudentId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("StudentName")
+                        .IsRequired();
+
+                    b.HasKey("StudentId");
+                });
+
             modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNet.Identity.EntityFramework.IdentityRole")
@@ -176,6 +233,17 @@ namespace TramaWebApp.Migrations
                     b.HasOne("TramaWebApp.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("TramaWebApp.Models.Essay", b =>
+                {
+                    b.HasOne("TramaWebApp.Models.Book")
+                        .WithMany()
+                        .HasForeignKey("bookBookId");
+
+                    b.HasOne("TramaWebApp.Models.Student")
+                        .WithMany()
+                        .HasForeignKey("studentStudentId");
                 });
         }
     }

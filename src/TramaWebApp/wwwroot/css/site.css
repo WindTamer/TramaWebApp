@@ -13,6 +13,51 @@ body {
     -o-background-size: cover;
 }
 
+.carousel-caption .row img {
+  margin:15px; height:150px
+}
+
+.carousel-caption .row img:hover {
+  margin-top: 0;
+  -webkit-transition: margin 0.5s ease-out;
+    -moz-transition: margin 0.5s ease-out;
+    -o-transition: margin 0.5s ease-out;
+}
+
+
+.nav .dropdown {
+    position: relative;
+
+    /** Make it fit tightly around it's children */
+    display: inline-block;
+}
+
+.nav .dropdown .dropdown-menu {
+    position: absolute;
+
+    /**
+     * Set the top of the dropdown menu to be positioned 100%
+     * from the top of the container, and aligned to the left.
+     */
+    top: 100%;
+    left: 0;
+
+    /** Allow no empty space between this and .dropdown */
+    margin: 0;
+}
+
+/**
+ * Apply these styles to .dropdown-menu when user hovers
+ * over .dropdown
+ */
+.nav .dropdown:hover .dropdown-menu {
+
+    /** Show dropdown menu */
+    display: block;
+}
+
+
+
 h1,
 h2,
 h3,
@@ -166,11 +211,17 @@ footer p {
         background: rgba(255,255,255,0.9);
     }
 
-    .nav>li>a {
+    .nav>li>a, .nav>li>div {
         padding: 35px;
     }
 
-    .navbar-nav>li>a {
+    .nav>li>div>a{
+        
+        text-decoration:none;
+        color:crimson;
+    }
+
+    .navbar-nav>li>a, .navbar-nav>li>div {
         line-height: normal;
     }
 
